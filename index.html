@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Object Detection</h2>
+  <input type="file" id="fileInput" accept="image/*">
+  <button onclick="send()">Detect</button>
+  <pre id="output"></pre>
+
+  <script>
+    
+    async function send() {
+      const file = document.getElementById("fileInput").files[0];
+      if (!file) return alert("Pehle image chuno");
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://127.0.0.1:8000/detect", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

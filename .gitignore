@@ -1,0 +1,6 @@
+venv/
+runs/
+__pycache__/
+*.mp4
+*.onnx
+*_openvino_model/
